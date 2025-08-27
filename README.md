@@ -2,20 +2,6 @@
 
 一个高性能的Go语言Map实现项目，支持多种数据结构实现。
 
-## 项目结构
-
-```
-EchoDB/
-├── cmd/                    # 主程序入口
-│   └── main.go
-├── models/                 # 数据模型
-│   └── person.go
-├── interfaces/             # 接口定义、实现和测试
-│   └── map.go
-├── go.mod                  # Go模块文件
-└── README.md              # 项目说明
-```
-
 ## 功能特性
 
 - **多种实现**: 支持切片、链表、哈希表三种Map实现
@@ -44,7 +30,9 @@ type MyMap interface {
 ## 测试结果
 
 ### 正确性测试
+
 ![正确性测试结果](image/README/1756019932893.png)
 
 ### 性能测试
+
 ![性能测试结果](image/README/1756019965692.png)
