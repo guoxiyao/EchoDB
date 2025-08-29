@@ -1,6 +1,8 @@
-package interfaces
+package mymap
 
-import "echodb/interfaces/models"
+import (
+	"echodb/internal/model"
+)
 
 // LinkedList 链表实现
 type LinkedList struct {
@@ -10,7 +12,7 @@ type LinkedList struct {
 
 type listNode struct {
 	key   int
-	value *models.Person
+	value *model.Person
 	next  *listNode
 }
 
@@ -18,7 +20,7 @@ func NewLinkedList() *LinkedList {
 	return &LinkedList{}
 }
 
-func (ll *LinkedList) Put(key int, value *models.Person) {
+func (ll *LinkedList) Put(key int, value *model.Person) {
 	// 先检查是否已存在，存在则更新
 	current := ll.head
 	for current != nil {
@@ -39,7 +41,7 @@ func (ll *LinkedList) Put(key int, value *models.Person) {
 	ll.size++
 }
 
-func (ll *LinkedList) Get(key int) *models.Person {
+func (ll *LinkedList) Get(key int) *model.Person {
 	current := ll.head
 	for current != nil {
 		if current.key == key {

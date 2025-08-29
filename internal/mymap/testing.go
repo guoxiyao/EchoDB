@@ -1,15 +1,15 @@
-package interfaces
+package mymap
 
 import (
-	"echodb/interfaces/models"
+	"echodb/internal/model"
 	"fmt"
 	"time"
 )
 
 // MyMap 接口定义
 type MyMap interface {
-	Put(id int, person *models.Person)
-	Get(id int) *models.Person
+	Put(id int, person *model.Person)
+	Get(id int) *model.Person
 	Delete(id int)
 }
 
@@ -30,8 +30,8 @@ func testImplementation(name string, m MyMap) {
 	fmt.Printf("测试%s...\n", name)
 
 	// 测试数据
-	p1 := models.NewPerson(1, "Alice", "Smith", 25, "Female", "alice@example.com")
-	p2 := models.NewPerson(2, "Bob", "Johnson", 30, "Male", "bob@example.com")
+	p1 := model.NewPerson(1, "Alice", "Smith", 25, "Female", "alice@example.com")
+	p2 := model.NewPerson(2, "Bob", "Johnson", 30, "Male", "bob@example.com")
 
 	// 测试Put和Get
 	m.Put(1, p1)
@@ -57,7 +57,7 @@ func testImplementation(name string, m MyMap) {
 	}
 
 	// 测试覆盖写入
-	p1Updated := models.NewPerson(1, "Alice", "Brown", 26, "Female", "new_alice@example.com")
+	p1Updated := model.NewPerson(1, "Alice", "Brown", 26, "Female", "new_alice@example.com")
 	m.Put(1, p1Updated)
 	if m.Get(1) != p1Updated {
 		fmt.Printf("%s: 覆盖写入测试失败\n", name)
@@ -69,9 +69,9 @@ func testImplementation(name string, m MyMap) {
 
 // TestPerformance 性能测试函数
 func TestPerformance(m MyMap, name string, count int) {
-	people := make([]*models.Person, count)
+	people := make([]*model.Person, count)
 	for i := 0; i < count; i++ {
-		people[i] = models.NewPerson(i, fmt.Sprintf("First%d", i), fmt.Sprintf("Last%d", i), 20+i%30, "Male", fmt.Sprintf("email%d@example.com", i))
+		people[i] = model.NewPerson(i, fmt.Sprintf("First%d", i), fmt.Sprintf("Last%d", i), 20+i%30, "Male", fmt.Sprintf("email%d@example.com", i))
 	}
 
 	// 测试Put性能

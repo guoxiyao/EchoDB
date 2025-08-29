@@ -1,13 +1,15 @@
-package interfaces
+package mymap
 
-import "echodb/interfaces/models"
+import (
+	"echodb/internal/model"
+)
 
 //仿 slice
 
 // ArrayEntry 数组条目
 type ArrayEntry struct {
 	key   int
-	value *models.Person
+	value *model.Person
 }
 
 // ArrayList 数组线性表实现的MyMap
@@ -31,7 +33,7 @@ func NewArrayList(capacity int) *ArrayList {
 }
 
 // Put 插入或更新元素（自动标记为未排序）
-func (al *ArrayList) Put(key int, value *models.Person) {
+func (al *ArrayList) Put(key int, value *model.Person) {
 	// 顺序查找是否已存在
 	array := *al.array
 	for i := 0; i < al.len; i++ {
@@ -76,7 +78,7 @@ func (al *ArrayList) resize() {
 }
 
 // Get 支持顺序查找和二分查找
-func (al *ArrayList) Get(key int) *models.Person {
+func (al *ArrayList) Get(key int) *model.Person {
 	array := *al.array
 	if al.sorted {
 		// 已排序时使用二分查找

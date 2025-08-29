@@ -1,6 +1,8 @@
-package interfaces
+package mymap
 
-import "echodb/interfaces/models"
+import (
+	"echodb/internal/model"
+)
 
 // HashTable 哈希表核心实现
 type HashTable struct {
@@ -33,7 +35,7 @@ func (h *HashTable) hash(key int) uint {
 	return uint(key) % uint(h.capacity)
 }
 
-func (h *HashTable) Put(key int, value *models.Person) {
+func (h *HashTable) Put(key int, value *model.Person) {
 	index := h.hash(key)
 
 	// 检查是否已存在
@@ -82,13 +84,13 @@ func (h *HashTable) resize() {
 	h.capacity = newCapacity
 }
 
-func (h *HashTable) Get(key int) *models.Person {
+func (h *HashTable) Get(key int) *model.Person {
 	index := h.hash(key)
 	current := h.buckets[index]
 
 	for current != nil {
 		if current.key == key {
-			return current.value.(*models.Person)
+			return current.value.(*model.Person)
 		}
 		current = current.next
 	}
